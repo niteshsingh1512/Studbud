@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AlertCircle, Smile, Frown, Meh, Clock } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import GoogleFit from "./GoogleFitApi";
 
 const generateRandomBPM = () => Math.floor(Math.random() * (85 - 58 + 1)) + 58;
 
@@ -8,6 +9,8 @@ const StressLevelComponent: React.FC = () => {
   const [bpm, setBpm] = useState(generateRandomBPM());
   const [bpmHistory, setBpmHistory] = useState<{ time: string; bpm: number }[]>([]);
 
+
+  <GoogleFit/>
   // Function to update BPM every 10 minutes
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,32 +25,32 @@ const StressLevelComponent: React.FC = () => {
         ...prev.slice(-9), // Keep only the last 10 records
         { time: timeString, bpm: newBpm }
       ]);
-    }, 10 * 60 * 100); // 10 minutes in milliseconds
+    }, 10 * 60 *1000); // 10 minutes in milliseconds
 
     return () => clearInterval(interval);
   }, []);
 
   // Determine category and colors
   const getBpmCategory = (bpm: number) => {
-    if (bpm >= 62 && bpm <= 80) return "Good";
+    if (bpm >= 62 && bpm <= 85) return "Good";
     if (bpm >= 60 && bpm < 62) return "Moderate";
     return "High";
   };
 
   const getBpmIcon = (bpm: number) => {
-    if (bpm >= 62 && bpm <= 80) return <Smile className="text-green-500" />;
+    if (bpm >= 62 && bpm <= 85) return <Smile className="text-green-500" />;
     if (bpm >= 60 && bpm < 62) return <Meh className="text-amber-500" />;
     return <Frown className="text-red-500" />;
   };
 
   const getBpmColor = (bpm: number) => {
-    if (bpm >= 62 && bpm <= 80) return "text-green-500";
+    if (bpm >= 62 && bpm <= 85) return "text-green-500";
     if (bpm >= 60 && bpm < 62) return "text-amber-500";
     return "text-red-500";
   };
 
   const getProgressColor = (bpm: number) => {
-    if (bpm >= 62 && bpm <= 80) return "bg-green-500";
+    if (bpm >= 62 && bpm <= 85) return "bg-green-500";
     if (bpm >= 60 && bpm < 62) return "bg-amber-500";
     return "bg-red-500";
   };
@@ -75,12 +78,14 @@ const StressLevelComponent: React.FC = () => {
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full h-3 bg-gray-200 rounded-full mb-4 overflow-hidden">
+      {/* Progress Bar */}
+      <div className="w-full h-4 bg-gray-200 rounded-full mb-4 overflow-hidden">
         <div
           className={`h-full rounded-full ${getProgressColor(bpm)}`}
-          style={{ width: `${((bpm - 58) / (85 - 58)) * 100}%`, transition: "width 0.3s ease" }}
+          style={{ width: `${((bpm - 58) / (90 - 58)) * 100}%`, transition: "width 0.3s ease" }}
         ></div>
       </div>
+
 
       {/* Message */}
       <div className={`p-3 rounded-lg mb-4 ${getBpmColor(bpm)} bg-opacity-10`}>

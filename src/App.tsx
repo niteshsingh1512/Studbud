@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import { useAuth } from "./contexts/AuthContext";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
@@ -17,9 +17,12 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import LoadingSpinner from "./components/LoadingSpinner";
-import SocialWidget from "./components/SocialWidget";
-import GoogleTranslate from "./components/Translate";
-
+// import SocialWidget from "./components/SocialWidget";
+// import GoogleTranslate from "./components/Translate";
+import StressManagement from "./pages/StressManagement";
+import BreatheNow from "./pages/BreatheNow";
+import BalloonGame from "./pages/BalloonGames";
+import QuickExercise from "./pages/QuickExercise";
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
 
@@ -58,6 +61,10 @@ function App() {
                 path="/signup"
                 element={user ? <Navigate to="/" /> : <Signup />}
               />
+              <Route path="/stress-management" element={<StressManagement />} />
+              <Route path="/balloon-game" element={<BalloonGame />} />
+              <Route path="/quick-exercise" element={<QuickExercise />} />
+              <Route path="/breathe-now" element={<BreatheNow />} />
 
               <Route
                 path="/"
@@ -107,6 +114,10 @@ function App() {
                   </PrivateRoute>
                 }
               />
+              <Route path="/stress-management" element={<StressManagement />} />
+              <Route path="/balloon-game" element={<BalloonGame />} />
+              <Route path="/quick-exercise" element={<QuickExercise />} />
+              <Route path="/breathe-now" element={<BreatheNow />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
