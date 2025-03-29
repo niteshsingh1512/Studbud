@@ -225,9 +225,7 @@ export default function Dashboard() {
             />
             
             {/* New Stress Level Component */}
-            <StressLevelComponent 
-              stressLevel={stressLevel.level} 
-              onUpdate={handleStressUpdate}
+            <StressLevelComponent     
             />
           </div>
           <div className="space-y-6">
