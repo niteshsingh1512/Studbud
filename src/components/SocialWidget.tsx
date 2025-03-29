@@ -22,23 +22,15 @@ export default function SocialWidget() {
         <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl border p-4 min-w-48 animate-slide-up">
           <div className="flex flex-col gap-3">
             <a
-              href="https://github.com/mintahandrews"
+              href="https://github.com/niteshsingh1512/Studbud"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition-all duration-300 hover:translate-x-1 group"
             >
               <Github className="w-5 h-5 transition-transform group-hover:rotate-12" />
-              <span>GitHub</span>
+              <span>Connect on GitHub</span>
             </a>
-            <a
-              href="https://ko-fi.com/mintahandrews"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition-all duration-300 hover:translate-x-1 group"
-            >
-              <Coffee className="w-5 h-5 transition-transform group-hover:rotate-12" />
-              <span>Buy me a coffee</span>
-            </a>
+           
           </div>
         </div>
       )}

@@ -80,6 +80,8 @@ const sanitizeInput = (input: string): string => {
     .trim();
 };
 
+
+
 // File type validation
 const ALLOWED_FILE_TYPES = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
@@ -182,7 +184,7 @@ export default function AiAssistant() {
     setIsLoading(true);
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
       const result = await model.generateContent(sanitizedInput);
       const response = await result.response;
       const text = response.text();
@@ -548,6 +550,8 @@ export default function AiAssistant() {
 
     return parts;
   };
+
+  // console.log("Message Content",MessageContent)
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window && !recognition.current) {

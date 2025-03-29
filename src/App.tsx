@@ -18,6 +18,7 @@ import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import LoadingSpinner from "./components/LoadingSpinner";
 import SocialWidget from "./components/SocialWidget";
+import GoogleTranslate from "./components/Translate";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
@@ -38,7 +39,9 @@ function App() {
 
   return (
     <Router>
+      
       <div className="min-h-screen bg-gray-50 flex">
+      
         {user && <Navbar />}
         <main
           className={`flex-1 ${
@@ -109,14 +112,14 @@ function App() {
           </div>
         </main>
       </div>
-      <SocialWidget />
+      {/* <SocialWidget />
       <Toaster
         position="bottom-right"
         containerStyle={{
           bottom: 40,
           right: 40,
         }}
-      />
+      /> */}
     </Router>
   );
 }

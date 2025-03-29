@@ -54,19 +54,19 @@ const StressLevelComponent: React.FC<StressLevelProps> = ({ stressLevel, onUpdat
   };
 
   // Handle slider change
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newLevel = parseInt(e.target.value, 10);
-    onUpdate(newLevel);
+  // const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newLevel = parseInt(e.target.value, 10);
+  //   onUpdate(newLevel);
     
-    // Log to history when stress level changes
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  //   // Log to history when stress level changes
+  //   const now = new Date();
+  //   const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     
-    setStressHistory(prev => [
-      { time: timeString, level: newLevel },
-      ...prev.slice(0, 9) // Keep only the 10 most recent entries
-    ]);
-  };
+  //   setStressHistory(prev => [
+  //     { time: timeString, level: newLevel },
+  //     ...prev.slice(0, 9) // Keep only the 10 most recent entries
+  //   ]);
+  // };
 
   // Update suggestion when stress level changes
   useEffect(() => {
@@ -79,7 +79,7 @@ const StressLevelComponent: React.FC<StressLevelProps> = ({ stressLevel, onUpdat
       <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="text-xl font-bold text-gray-900">Stress Level</h2>
-          <p className="text-gray-500 text-sm">AI-predicted based on your patterns</p>
+          <p className="text-gray-500 text-sm">Monitoring Heart BPM </p>
         </div>
         {getStressIcon(stressLevel)}
       </div>
@@ -105,7 +105,7 @@ const StressLevelComponent: React.FC<StressLevelProps> = ({ stressLevel, onUpdat
         ></div>
       </div>
       
-      {/* Slider */}
+      {/* Slider
       <div className="mb-1">
         <input
           type="range"
@@ -121,7 +121,7 @@ const StressLevelComponent: React.FC<StressLevelProps> = ({ stressLevel, onUpdat
         <span>Low</span>
         <span>Moderate</span>
         <span>High</span>
-      </div>
+      </div> */}
       
       {/* Message */}
       <div className={`p-3 rounded-lg mb-4 ${getStressColor(stressLevel)} bg-opacity-10`}>
