@@ -41,7 +41,7 @@ export default function StressManagement() {
   // Tool Configuration
   const tools = [
     { name: "Breathe Now", icon: <Heart />, action: () => navigate("/breathe-now") }, // Navigate to Breathe Now page
-    { name: "Calming Sounds", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") },
+    { name: "Calming Sounds", icon: <Music />, action: () => navigate("/music") }, // Navigate to Calming Sounds page
     { name: "Take a Break", icon: <Pause />, action: () => navigate("/balloon-game") },
     { name: "Energy Tips", icon: <Coffee />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]) },
     { name: "Quick Exercise", icon: <Dumbbell />, action: () => navigate("/quick-exercise") },
