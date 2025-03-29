@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-30 md:top-0 md:bottom-auto md:right-auto md:h-screen md:w-64 md:border-t-0 md:border-r">
       <div className="hidden md:flex md:items-center md:h-20 md:px-4">
-        <h1 className="text-2xl font-bold text-indigo-600">StudyMate</h1>
+        <h1 className="text-2xl font-bold text-indigo-600">StudBud</h1>
       </div>
 
       {user && (

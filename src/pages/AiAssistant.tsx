@@ -700,9 +700,9 @@ export default function AiAssistant() {
     
     try {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-      const safeFileName = `studymate-notes-${timestamp}.txt`.replace(/[^\w.-]/g, '');
+      const safeFileName = `StudBud-notes-${timestamp}.txt`.replace(/[^\w.-]/g, '');
       
-      const formattedText = `StudyMate Lecture Notes\nRecorded: ${new Date().toLocaleString()}\n\n${completeText}`;
+      const formattedText = `StudBud Lecture Notes\nRecorded: ${new Date().toLocaleString()}\n\n${completeText}`;
       
       // Create and download file securely
       const blob = new Blob([formattedText], { type: 'text/plain;charset=utf-8' });
