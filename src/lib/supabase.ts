@@ -19,7 +19,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   },
   global: {
     headers: {
-      'x-application-name': 'studymate'
+      'x-application-name': 'StudBud'
     }
   },
   realtime: {
