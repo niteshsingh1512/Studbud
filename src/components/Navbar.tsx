@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { BarChart2, CheckSquare, Home, Book, Bot, User, LogOut } from 'lucide-react';
+import { BarChart2, CheckSquare, Home, Book, Bot, User, LogOut, Heart } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -34,6 +34,7 @@ export default function Navbar() {
         <NavItem to="/analytics" icon={<BarChart2 />} label="Analytics" isActive={isActive('/analytics')} />
         <NavItem to="/ai-assistant" icon={<Bot />} label="AI Assistant" isActive={isActive('/ai-assistant')} />
         <NavItem to="/profile" icon={<User />} label="Profile" isActive={isActive('/profile')} />
+        <NavItem to="/stress-management" icon={<Heart />} label="Stress Management" isActive={isActive('/stress-management')} />
       </ul>
 
       {user && (
