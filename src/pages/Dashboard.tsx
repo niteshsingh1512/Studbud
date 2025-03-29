@@ -192,7 +192,7 @@ export default function Dashboard() {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-3">
           <GraduationCap className="text-indigo-600" size={28} />
-          <h1 className="text-2xl font-bold text-gray-900">Study Assistant</h1>
+          <h1 className="text-2xl font-bold text-gray-900">StudBud</h1>
         </div>
         <FocusMode isStudyActive={isStudyActive} />
       </div>

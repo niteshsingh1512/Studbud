@@ -25,7 +25,7 @@ const StressLevelComponent: React.FC = () => {
         ...prev.slice(-9), // Keep only the last 10 records
         { time: timeString, bpm: newBpm }
       ]);
-    }, 10 * 60 *1000); // 10 minutes in milliseconds
+    }, 1 * 60 *1000 ); // 10 minutes in milliseconds
 
     return () => clearInterval(interval);
   }, []);
