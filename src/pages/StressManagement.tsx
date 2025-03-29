@@ -1,10 +1,11 @@
-import { Heart, Music, Coffee, Dumbbell, Pause, Bolt, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { Heart, Music, Coffee, Dumbbell, Pause, Bolt, BookOpen, X } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function StressManagement() {
   const navigate = useNavigate();
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
 
   // Function to play sound
   const playSound = (url: string) => {
@@ -13,6 +14,13 @@ export default function StressManagement() {
     newAudio.play();
     setAudio(newAudio);
   };
+
+  // Stop audio when unmounting
+  useEffect(() => {
+    return () => {
+      if (audio) audio.pause();
+    };
+  }, [audio]);
 
   // Quick Exercises
   const exercises = [
@@ -38,10 +46,10 @@ export default function StressManagement() {
     "Listen to upbeat music for motivation."
   ];
 
-  // Tool Configuration
+  // Tool Configuration with descriptions
   const tools = [
     { name: "Breathe Now", icon: <Heart />, action: () => navigate("/breathe-now") }, // Navigate to Breathe Now page
-    { name: "Calming Sounds", icon: <Music />, action: () => navigate("/music") }, // Navigate to Calming Sounds page
+    { name: "Calming Sounds", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") },
     { name: "Take a Break", icon: <Pause />, action: () => navigate("/balloon-game") },
     { name: "Energy Tips", icon: <Coffee />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]) },
     { name: "Quick Exercise", icon: <Dumbbell />, action: () => navigate("/quick-exercise") },
@@ -52,20 +60,38 @@ export default function StressManagement() {
 
   return (
     <div className="min-h-screen p-6 bg-gray-50 text-gray-900 flex flex-col">
-      <h1 className="text-2xl font-semibold mb-4 text-indigo-700">Tools to help you manage stress and focus</h1>
+      <div className="flex items-center gap-3 mb-8">
+        <Heart className="text-indigo-600" size={28} />
+        <h1 className="text-2xl font-bold text-gray-900">Stress Management Tools</h1>
+      </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-grow">
+      {activeTooltip && (
+        <div className="mb-6 relative bg-white p-4 rounded-xl shadow-md border border-gray-100 animate-fadeIn">
+          <button 
+            onClick={() => setActiveTooltip(null)}
+            className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+          >
+            <X size={16} />
+          </button>
+          <p className="text-gray-700 pr-6">{activeTooltip}</p>
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 flex-grow">
         {tools.map((tool) => (
           <button 
             key={tool.name}
             onClick={tool.action}
-            className="flex flex-col items-center justify-center p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition h-full"
+            className={`flex flex-col items-center justify-center p-6 ${tool.bgColor} border border-gray-200 rounded-xl shadow-sm ${tool.hoverColor} transition duration-300 h-full`}
           >
-            <div className="p-3 bg-indigo-100 text-indigo-600 rounded-full mb-3">{tool.icon}</div>
-            <span className="text-sm font-medium">{tool.name}</span>
+            <div className={`p-4 ${tool.iconColor} rounded-full mb-4`}>
+              {tool.icon}
+            </div>
+            <span className="text-base font-medium mb-2">{tool.name}</span>
+            <p className="text-xs text-gray-500 text-center">{tool.description}</p>
           </button>
         ))}
       </div>
     </div>
   );
-}
+}g

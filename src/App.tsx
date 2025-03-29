@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import { useAuth } from "./contexts/AuthContext";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";

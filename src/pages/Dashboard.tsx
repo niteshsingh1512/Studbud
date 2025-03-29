@@ -9,6 +9,9 @@ import { getFromStorage, setToStorage } from '../utils/storage';
 import StressLevelComponent from '../components/StressLevelComponent';
 import MoodTrackerComponent from '../components/MoodTrackerComponent';
 import WeeklyMoodComponent from '../components/WeeklyMoodComponent';
+import SleepAnalyzer from '../components/SleepAnalyzer';
+import CalorieBurnMeter from '../components/CalorieBurntMeter';
+import StressAnalyzer from '../components/StressAnalyzer';
 
 // Define interfaces for mood-related types
 interface MoodEntry {
@@ -227,6 +230,9 @@ export default function Dashboard() {
             {/* New Stress Level Component */}
             <StressLevelComponent     
             />
+            <SleepAnalyzer/>
+            <CalorieBurnMeter/>
+            <StressAnalyzer/>
           </div>
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
