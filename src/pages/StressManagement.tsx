@@ -22,39 +22,16 @@ export default function StressManagement() {
     };
   }, [audio]);
 
-  // Quick Exercises
-  const exercises = [
-    "Stand up and stretch for 2 minutes.",
-    "Roll your shoulders backward and forward.",
-    "Do 10 jumping jacks!",
-    "Rotate your wrists to relax your hands."
-  ];
-
-  // Study Tips
-  const studyTips = [
-    "Use the Pomodoro technique: 25 minutes focus, 5-minute break.",
-    "Avoid multitasking. Focus on one subject at a time.",
-    "Use active recall: test yourself instead of rereading notes.",
-    "Take short breaks to refresh your mind."
-  ];
-
-  // Energy Boost Tips
-  const energyTips = [
-    "Drink a glass of water to stay hydrated.",
-    "Take deep breaths for an instant energy boost.",
-    "Do a few push-ups or squats to wake yourself up.",
-    "Listen to upbeat music for motivation."
-  ];
 
   // Tool Configuration with descriptions
   const tools = [
     { name: "Breathe Now", icon: <Heart />, action: () => navigate("/breathe-now") }, // Navigate to Breathe Now page
     { name: "Calming Sounds", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") },
     { name: "Take a Break", icon: <Pause />, action: () => navigate("/balloon-game") },
-    { name: "Energy Tips", icon: <Coffee />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]) },
+    { name: "Energy Tips", icon: <Coffee />, action: () => navigate("/energy-tips") },
     { name: "Quick Exercise", icon: <Dumbbell />, action: () => navigate("/quick-exercise") },
     { name: "Focus Music", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3") },
-    { name: "Study Tips", icon: <BookOpen />, action: () => console.log(studyTips[Math.floor(Math.random() * studyTips.length)]) },
+    { name: "Study Tips", icon: <BookOpen />, action: () => navigate("/study-tips") },
     { name: "Energy Boost", icon: <Bolt />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]) },
   ];
 
@@ -94,4 +71,4 @@ export default function StressManagement() {
       </div>
     </div>
   );
-}g
+}

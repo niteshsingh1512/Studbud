@@ -24,6 +24,8 @@ import BreatheNow from "./pages/BreatheNow";
 import BalloonGame from "./pages/BalloonGames";
 import QuickExercise from "./pages/QuickExercise";
 import CalmingSounds from "./pages/CalmingSound";
+import EnergyTips from "./pages/EnergyTips";
+import StudyTips from "./pages/StudyTips";
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
 
@@ -121,6 +123,8 @@ function App() {
               <Route path="/breathe-now" element={<BreatheNow />} />
               <Route path="/music" element={<CalmingSounds />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/energy-tips" element={<EnergyTips />} />
+              <Route path="/study-tips" element={<StudyTips />} />
 
             </Routes>
           </div>
