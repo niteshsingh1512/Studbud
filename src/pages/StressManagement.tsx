@@ -22,110 +22,17 @@ export default function StressManagement() {
     };
   }, [audio]);
 
-  // Quick Exercises
-  const exercises = [
-    "Stand up and stretch for 2 minutes.",
-    "Roll your shoulders backward and forward.",
-    "Do 10 jumping jacks!",
-    "Rotate your wrists to relax your hands."
-  ];
-
-  // Study Tips
-  const studyTips = [
-    "Use the Pomodoro technique: 25 minutes focus, 5-minute break.",
-    "Avoid multitasking. Focus on one subject at a time.",
-    "Use active recall: test yourself instead of rereading notes.",
-    "Take short breaks to refresh your mind."
-  ];
-
-  // Energy Boost Tips
-  const energyTips = [
-    "Drink a glass of water to stay hydrated.",
-    "Take deep breaths for an instant energy boost.",
-    "Do a few push-ups or squats to wake yourself up.",
-    "Listen to upbeat music for motivation."
-  ];
 
   // Tool Configuration with descriptions
   const tools = [
-    { 
-      name: "Breathe Now", 
-      icon: <Heart className="w-6 h-6" />, 
-      description: "Guided breathing exercises to calm your mind",
-      action: () => navigate("/breathe-now"),
-      bgColor: "bg-pink-50",
-      iconColor: "text-pink-600",
-      hoverColor: "hover:bg-pink-100"
-    },
-    { 
-      name: "Calming Sounds", 
-      icon: <Music className="w-6 h-6" />, 
-      description: "Nature sounds to help you relax and focus",
-      action: () => {
-        playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-        setActiveTooltip("Playing calming sounds... Click again to restart");
-      },
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-600",
-      hoverColor: "hover:bg-blue-100"
-    },
-    { 
-      name: "Take a Break", 
-      icon: <Pause className="w-6 h-6" />, 
-      description: "A quick distraction with our balloon game",
-      action: () => navigate("/balloon-game"),
-      bgColor: "bg-purple-50",
-      iconColor: "text-purple-600", 
-      hoverColor: "hover:bg-purple-100"
-    },
-    { 
-      name: "Energy Tips", 
-      icon: <Coffee className="w-6 h-6" />, 
-      description: "Tips to boost your energy when feeling down",
-      action: () => setActiveTooltip(energyTips[Math.floor(Math.random() * energyTips.length)]),
-      bgColor: "bg-amber-50",
-      iconColor: "text-amber-600",
-      hoverColor: "hover:bg-amber-100" 
-    },
-    { 
-      name: "Quick Exercise", 
-      icon: <Dumbbell className="w-6 h-6" />, 
-      description: "Simple exercises you can do at your desk",
-      action: () => setActiveTooltip(exercises[Math.floor(Math.random() * exercises.length)]),
-      bgColor: "bg-green-50",
-      iconColor: "text-green-600",
-      hoverColor: "hover:bg-green-100"
-    },
-    { 
-      name: "Focus Music", 
-      icon: <Music className="w-6 h-6" />, 
-      description: "Music to enhance concentration and focus",
-      action: () => {
-        playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3");
-        setActiveTooltip("Playing focus music... Click again to restart");
-      },
-      bgColor: "bg-indigo-50",
-      iconColor: "text-indigo-600",
-      hoverColor: "hover:bg-indigo-100"
-    },
-    { 
-      name: "Study Tips", 
-      icon: <BookOpen className="w-6 h-6" />, 
-      description: "Effective study techniques to maximize retention",
-      action: () => setActiveTooltip(studyTips[Math.floor(Math.random() * studyTips.length)]),
-      bgColor: "bg-cyan-50",
-      iconColor: "text-cyan-600",
-      hoverColor: "hover:bg-cyan-100"
-    },
-    { 
-      name: "Energy Boost", 
-      icon: <Bolt className="w-6 h-6" />, 
-      description: "Quick ways to boost your energy and focus",
-      action: () => setActiveTooltip(energyTips[Math.floor(Math.random() * energyTips.length)]),
-      bgColor: "bg-orange-50",
-      iconColor: "text-orange-600",
-      hoverColor: "hover:bg-orange-100"
-    },
+    { name: "Breathe Now", icon: <Heart />, action: () => navigate("/breathe-now") }, // Navigate to Breathe Now page
+    { name: "Calming Sounds", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") },
+    { name: "Take a Break", icon: <Pause />, action: () => navigate("/balloon-game") },
+    { name: "Energy Tips", icon: <Coffee />, action: () => navigate("/energy-tips") },
+    { name: "Quick Exercise", icon: <Dumbbell />, action: () => navigate("/quick-exercise") },
+    { name: "Focus Music", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3") },
+    { name: "Study Tips", icon: <BookOpen />, action: () => navigate("/study-tips") },
+    { name: "Energy Boost", icon: <Bolt />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]) },
   ];
 
   return (
@@ -164,4 +71,8 @@ export default function StressManagement() {
       </div>
     </div>
   );
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> 51f57a58d35aa761c25dfce364967b81035b05e4
