@@ -15,7 +15,7 @@ export default function Navbar() {
   };
   
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-30 md:top-0 md:bottom-auto md:right-auto md:h-screen md:w-64 md:border-t-0 md:border-r">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-30 md:top-0 md:bottom-auto md:right-auto md:h-screen md:w-64 md:border-t-0 md:border-r shadow-sm">
       <div className="hidden md:flex md:items-center md:h-20 md:px-4">
         <h1 className="text-2xl font-bold text-indigo-600">StudBud</h1>
       </div>
@@ -28,13 +28,13 @@ export default function Navbar() {
       )}
 
       <ul className="flex justify-around md:flex-col md:space-y-2 md:mt-8">
-        <NavItem to="/" icon={<Home />} label="Dashboard" isActive={isActive('/')} />
-        <NavItem to="/tasks" icon={<CheckSquare />} label="Tasks" isActive={isActive('/tasks')} />
-        <NavItem to="/subjects" icon={<Book />} label="Subjects" isActive={isActive('/subjects')} />
-        <NavItem to="/analytics" icon={<BarChart2 />} label="Analytics" isActive={isActive('/analytics')} />
-        <NavItem to="/ai-assistant" icon={<Bot />} label="AI Assistant" isActive={isActive('/ai-assistant')} />
-        <NavItem to="/profile" icon={<User />} label="Profile" isActive={isActive('/profile')} />
-        <NavItem to="/stress-management" icon={<Heart />} label="Stress Management" isActive={isActive('/stress-management')} />
+        <NavItem to="/" icon={<Home size={20} />} label="Dashboard" isActive={isActive('/')} />
+        <NavItem to="/tasks" icon={<CheckSquare size={20} />} label="Tasks" isActive={isActive('/tasks')} />
+        <NavItem to="/subjects" icon={<Book size={20} />} label="Subjects" isActive={isActive('/subjects')} />
+        <NavItem to="/analytics" icon={<BarChart2 size={20} />} label="Analytics" isActive={isActive('/analytics')} />
+        <NavItem to="/ai-assistant" icon={<Bot size={20} />} label="AI Assistant" isActive={isActive('/ai-assistant')} />
+        <NavItem to="/stress-management" icon={<Heart size={20} />} label="Stress Management" isActive={isActive('/stress-management')} />
+        <NavItem to="/profile" icon={<User size={20} />} label="Profile" isActive={isActive('/profile')} />
       </ul>
 
       {user && (
@@ -43,7 +43,7 @@ export default function Navbar() {
             onClick={handleLogout}
             className="flex items-center gap-3 w-full p-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
           >
-            <LogOut />
+            <LogOut size={20} />
             <span>Logout</span>
           </button>
         </div>
@@ -52,15 +52,23 @@ export default function Navbar() {
   );
 }
 
-function NavItem({ to, icon, label, isActive }: { to: string; icon: React.ReactNode; label: string; isActive: boolean }) {
+interface NavItemProps {
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+  isActive: boolean;
+}
+
+function NavItem({ to, icon, label, isActive }: NavItemProps) {
   return (
     <li>
       <Link
         to={to}
         className={`flex items-center gap-3 p-3 rounded-lg transition-colors
           ${isActive 
-            ? 'text-indigo-600 bg-indigo-50' 
+            ? 'text-indigo-600 bg-indigo-50 font-medium' 
             : 'text-gray-600 hover:bg-gray-100'}`}
+        aria-current={isActive ? 'page' : undefined}
       >
         {icon}
         <span className="hidden md:inline">{label}</span>

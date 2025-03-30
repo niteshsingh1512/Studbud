@@ -33,6 +33,16 @@ export default function Dashboard() {
     lastStudyDate: new Date().toISOString()
   });
 
+  const subjectsString = localStorage.getItem('subjects'); 
+
+// Parse the JSON string safely with type assertion
+const subject: { id: string; name: string; color: string; goalHoursPerWeek: number }[] = subjectsString 
+  ? JSON.parse(subjectsString) 
+  : [];
+
+console.log(subjectsString);
+
+
   const [moodHistory, setMoodHistory] = useState<MoodEntry[]>([]);
 
   useEffect(() => {
@@ -78,7 +88,7 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          <StudyStreakComponent streak={streak} />
+          <StudyStreakComponent  />
           <div className="grid grid-cols-2 gap-6">
             <StressLevelComponent />
             <SleepAnalyzer />
@@ -94,7 +104,7 @@ export default function Dashboard() {
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 mb-4"
             >
               <option value="">General Study</option>
-              {subjects?.map((subject) => (
+              {subject?.map((subject) => (
                 <option key={subject.id} value={subject.name}>
                   {subject.name}
                 </option>

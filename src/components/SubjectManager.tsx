@@ -12,24 +12,26 @@ const COLORS = [
   '#D4A5A5', '#9E9E9E', '#58B19F', '#FFB6B9', '#BAD7DF'
 ];
 
+const STORAGE_KEY = 'subjects';
+
 export default function SubjectManager({ onClose }: SubjectManagerProps) {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     color: COLORS[0],
-    goalHoursPerWeek: 5
+    goalHoursPerWeek: 5,
   });
 
   useEffect(() => {
-    const storedSubjects = localStorage.getItem('subjects');
+    const storedSubjects = localStorage.getItem(STORAGE_KEY);
     if (storedSubjects) {
       setSubjects(JSON.parse(storedSubjects));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('subjects', JSON.stringify(subjects));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(subjects));
   }, [subjects]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,17 +40,23 @@ export default function SubjectManager({ onClose }: SubjectManagerProps) {
       toast.error('Please enter a subject name');
       return;
     }
-
+  
     if (editingId) {
-      setSubjects(prev => prev.map(sub => sub.id === editingId ? { ...sub, ...formData } : sub));
+      const updatedSubjects = subjects.map((subject) =>
+        subject.id === editingId ? { ...subject, ...formData } : subject
+      );
+      setSubjects(updatedSubjects);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSubjects));
       setEditingId(null);
       toast.success('Subject updated');
     } else {
       const newSubject = { id: Date.now().toString(), ...formData };
-      setSubjects(prev => [...prev, newSubject]);
+      const updatedSubjects = [...subjects, newSubject];
+      setSubjects(updatedSubjects);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSubjects));
       toast.success('Subject added');
     }
-
+  
     setFormData({ name: '', color: COLORS[0], goalHoursPerWeek: 5 });
   };
 
@@ -57,12 +65,14 @@ export default function SubjectManager({ onClose }: SubjectManagerProps) {
     setFormData({
       name: subject.name,
       color: subject.color,
-      goalHoursPerWeek: subject.goalHoursPerWeek
+      goalHoursPerWeek: subject.goalHoursPerWeek,
     });
   };
 
   const handleDelete = (id: string) => {
-    setSubjects(prev => prev.filter(sub => sub.id !== id));
+    const updatedSubjects = subjects.filter((subject) => subject.id !== id);
+    setSubjects(updatedSubjects);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSubjects));
     toast.success('Subject deleted');
   };
 
@@ -77,25 +87,89 @@ export default function SubjectManager({ onClose }: SubjectManagerProps) {
         </div>
 
         <form onSubmit={handleSubmit} className="mb-6">
-          <input
-            type="text"
-            value={formData.name}
-            onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-            placeholder="Enter subject name"
-            className="w-full px-3 py-2 border rounded-lg"
-          />
-          <button type="submit" className="w-full mt-4 px-4 py-2 text-white bg-indigo-600 rounded-lg">
-            {editingId ? 'Update Subject' : 'Add Subject'}
-          </button>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Subject Name
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+                placeholder="Enter subject name"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Color</label>
+              <div className="flex flex-wrap gap-2">
+                {COLORS.map((color) => (
+                  <button
+                    key={color}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, color })}
+                    className={`w-8 h-8 rounded-full border-2 ${
+                      formData.color === color ? 'border-black' : 'border-transparent'
+                    }`}
+                    style={{ backgroundColor: color }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Weekly Goal (hours)
+              </label>
+              <input
+                type="number"
+                value={formData.goalHoursPerWeek}
+                onChange={(e) => {
+                  const updatedHours = Math.max(0, parseInt(e.target.value) || 0);
+                  setFormData({ ...formData, goalHoursPerWeek: updatedHours });
+                  if (editingId) {
+                    setSubjects((prevSubjects) => {
+                      const updatedSubjects = prevSubjects.map(subject => 
+                        subject.id === editingId ? { ...subject, goalHoursPerWeek: updatedHours } : subject
+                      );
+                      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSubjects));
+                      return updatedSubjects;
+                    });
+                  }
+                }}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+                min="0"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700"
+            >
+              {editingId ? 'Update Subject' : 'Add Subject'}
+            </button>
+          </div>
         </form>
 
         <div className="space-y-2">
           {subjects.map((subject) => (
-            <div key={subject.id} className="flex justify-between p-3 border rounded-lg">
-              <span>{subject.name}</span>
+            <div key={subject.id} className="flex items-center justify-between p-3 rounded-lg border">
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: subject.color }} />
+                <span>{subject.name}</span>
+                <span className="text-sm text-gray-500">{subject.goalHoursPerWeek}h/week</span>
+              </div>
               <div className="flex items-center gap-2">
-                <button onClick={() => handleEdit(subject)}><Edit2 size={16} /></button>
-                <button onClick={() => handleDelete(subject.id)}><Trash2 size={16} /></button>
+                <button onClick={() => handleEdit(subject)} className="p-1 text-gray-500 hover:text-gray-700">
+                  <Edit2 size={16} />
+                </button>
+                <button
+                  onClick={() => handleDelete(subject.id)}
+                  className="p-1 text-gray-500 hover:text-red-500"
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
             </div>
           ))}
