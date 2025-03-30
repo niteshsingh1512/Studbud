@@ -224,9 +224,9 @@ export default function FocusMode({ isStudyActive }: FocusModeProps) {
                     </div>
                   )}
                 </div>
-                <p className="mt-4 text-base text-gray-600">
+                {/* <p className="mt-4 text-base text-gray-600">
                   Real-time movement detection using frame differencing
-                </p>
+                </p> */}
               </div>
 
               <div className="flex-1 flex flex-col items-center">

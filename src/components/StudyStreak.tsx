@@ -3,7 +3,7 @@ import { formatDistanceToNow } from "date-fns";
 
 export default function StressScoreComponent() {
   // Hardcoded random data
-  const currentStressScore = 62;
+  const currentStressScore = 44;
   const hrvScore = 78;
   const lastMeasuredDate = new Date(Date.now() - 3600000 * 3).toISOString(); // 3 hours ago
 

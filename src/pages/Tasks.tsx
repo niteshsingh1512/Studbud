@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Task } from '../types';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
-import { Plus } from 'lucide-react';
+import {  Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
+
+
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<Task[]>(() => {
@@ -87,6 +89,8 @@ export default function Tasks() {
           initialData={editingTask || undefined}
         />
       )}
+      
+      
     </div>
   );
 }

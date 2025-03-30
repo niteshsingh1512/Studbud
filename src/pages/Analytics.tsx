@@ -39,7 +39,7 @@ const BehaviorList: React.FC = () => {
   // Prepare data for the chart (convert seconds to hours)
   const chartData = data.map((item) => ({
     website: item.website,
-    timeSpent: (item.timeSpent / 3600).toFixed(2), // Convert seconds to hours (2 decimal places)
+    timeSpent: (item.timeSpent / 360).toFixed(2), // Convert seconds to hours (2 decimal places)
   }));
 
   return (
@@ -48,13 +48,13 @@ const BehaviorList: React.FC = () => {
 
       {/* Bar Chart */}
       <div className="w-full h-80  bg-white rounded-lg shadow p-10 mb-6">
-        <h3 className="text-lg font-semibold mb-2">Time Spent on Websites (Hours)</h3>
+        <h3 className="text-lg font-semibold mb-2">Time Spent on Websites (mins)</h3>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="website" />
-            <YAxis tickFormatter={(tick) => `${tick} hrs`} /> {/* Format Y-axis as hours */}
-            <Tooltip formatter={(value) => `${value} hrs`} />
+            <YAxis tickFormatter={(tick) => `${tick} mins`} /> {/* Format Y-axis as hours */}
+            <Tooltip formatter={(value) => `${value} mins`} />
             <Bar dataKey="timeSpent" fill="#8884d8" />
           </BarChart>
         </ResponsiveContainer>
@@ -79,7 +79,7 @@ const BehaviorList: React.FC = () => {
                 <div className="mt-2 border-t pt-2">
                   <p><strong>Date:</strong> {item.date}</p>
                   <p><strong>Clicks:</strong> {item.clicks}</p>
-                  <p><strong>Time Spent:</strong> {(item.timeSpent / 3600).toFixed(2)} hours</p>
+                  <p><strong>Time Spent:</strong> {(item.timeSpent / 360).toFixed(2)} mins</p>
 
                 </div>
               )}

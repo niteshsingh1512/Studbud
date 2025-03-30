@@ -12,6 +12,7 @@ import WeeklyMoodComponent from '../components/WeeklyMoodComponent';
 import SleepAnalyzer from '../components/SleepAnalyzer';
 import CalorieBurnMeter from '../components/CalorieBurntMeter';
 import StressAnalyzer from '../components/StressAnalyzer';
+// import CalendarDates from '../components/CalendarDates';
 
 interface MoodEntry {
   mood: string;
@@ -94,6 +95,8 @@ console.log(subjectsString);
             <SleepAnalyzer />
             <CalorieBurnMeter />
             <StressAnalyzer />
+            {/* <CalendarDates /> */}
+            
           </div>
         </div>
         <div className="space-y-6">
@@ -122,6 +125,7 @@ console.log(subjectsString);
             }
           />
         </div>
+        
       </div>
     </div>
   );

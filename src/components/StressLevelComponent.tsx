@@ -11,23 +11,23 @@ const StressLevelComponent: React.FC = () => {
     return savedHistory ? JSON.parse(savedHistory) : [];
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newBpm = generateRandomBPM();
-      setBpm(newBpm);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const newBpm = generateRandomBPM();
+  //     setBpm(newBpm);
 
-      const now = new Date();
-      const timeString = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  //     const now = new Date();
+  //     const timeString = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
-      setBpmHistory((prev) => {
-        const updatedHistory = [...prev.slice(-9), { time: timeString, bpm: newBpm }];
-        localStorage.setItem("bpmHistory", JSON.stringify(updatedHistory));
-        return updatedHistory;
-      });
-    }, 10 * 60 * 1000);
+  //     setBpmHistory((prev) => {
+  //       const updatedHistory = [...prev.slice(-9), { time: timeString, bpm: newBpm }];
+  //       localStorage.setItem("bpmHistory", JSON.stringify(updatedHistory));
+  //       return updatedHistory;
+  //     });
+  //   }, 10 * 60 * 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200 max-w-md">
