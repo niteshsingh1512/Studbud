@@ -3,16 +3,17 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 import { Flame } from "lucide-react";
 
 const hardcodedHistory = [
-  { time: "08:00 AM", calories: 120 },
-  { time: "10:00 AM", calories: 180 },
-  { time: "12:00 PM", calories: 250 },
-  { time: "02:00 PM", calories: 320 },
-  { time: "04:00 PM", calories: 400 },
-  { time: "06:00 PM", calories: 470 },
-  { time: "08:00 PM", calories: 540 },
+  { time: "08:00 AM", calories: 319 },
+  { time: "10:00 AM", calories: 621 },
+  { time: "12:00 PM", calories: 970 },
+  { time: "02:00 PM", calories: 1234 },
+  { time: "04:00 PM", calories: 1543},
+  { time: "06:00 PM", calories: 1743},
+  { time: "08:00 PM", calories: 1913},
 ];
 
 const generateRandomCalories = () => Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+
 
 const CalorieBurnMeter = () => {
   const [caloriesBurnt, setCaloriesBurnt] = useState(generateRandomCalories());
@@ -37,6 +38,7 @@ const CalorieBurnMeter = () => {
 
     return () => clearInterval(interval);
   }, []);
+  const getCalories = 2134;
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200 max-w-md">
@@ -47,7 +49,7 @@ const CalorieBurnMeter = () => {
       
       <div className="flex justify-between items-center mb-2">
         <span className="font-medium text-gray-700">Calories Burnt:</span>
-        <span className="text-2xl font-bold text-red-500">{caloriesBurnt} kcal</span>
+        <span className="text-2xl font-bold text-red-500">{getCalories} kcal</span>
       </div>
       
       <div className="w-full h-4 bg-gray-200 rounded-full mb-4 overflow-hidden">

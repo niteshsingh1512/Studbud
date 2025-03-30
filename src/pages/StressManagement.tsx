@@ -2,6 +2,14 @@ import { Heart, Music, Coffee, Dumbbell, Pause, Bolt, BookOpen, X } from "lucide
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Array of energy tips
+const energyTips = [
+  "Take a short walk to refresh your mind.",
+  "Drink a glass of water to stay hydrated.",
+  "Stretch for a few minutes to relieve tension.",
+  "Listen to upbeat music to boost your energy."
+];
+
 export default function StressManagement() {
   const navigate = useNavigate();
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
@@ -25,14 +33,14 @@ export default function StressManagement() {
 
   // Tool Configuration with descriptions
   const tools = [
-    { name: "Breathe Now", icon: <Heart />, action: () => navigate("/breathe-now") }, // Navigate to Breathe Now page
-    { name: "Calming Sounds", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") },
-    { name: "Take a Break", icon: <Pause />, action: () => navigate("/balloon-game") },
-    { name: "Energy Tips", icon: <Coffee />, action: () => navigate("/energy-tips") },
-    { name: "Quick Exercise", icon: <Dumbbell />, action: () => navigate("/quick-exercise") },
-    { name: "Focus Music", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3") },
-    { name: "Study Tips", icon: <BookOpen />, action: () => navigate("/study-tips") },
-    { name: "Energy Boost", icon: <Bolt />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]) },
+    { name: "Breathe Now", icon: <Heart />, action: () => navigate("/breathe-now"), iconColor: "text-red-500", bgColor: "bg-red-100", description: "Practice mindful breathing to relax." }, // Navigate to Breathe Now page
+    { name: "Calming Sounds", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"), iconColor: "text-blue-500", bgColor: "bg-blue-100", description: "Listen to calming sounds to ease stress." },
+    { name: "Take a Break", icon: <Pause />, action: () => navigate("/balloon-game"), iconColor: "text-yellow-500", bgColor: "bg-yellow-100", description: "Take a short break to refresh your mind." },
+    { name: "Energy Tips", icon: <Coffee />, action: () => navigate("/energy-tips"), iconColor: "text-green-500", bgColor: "bg-green-100", description: "Get tips to boost your energy levels." },
+    { name: "Quick Exercise", icon: <Dumbbell />, action: () => navigate("/quick-exercise"), iconColor: "text-purple-500", bgColor: "bg-purple-100", description: "Engage in quick exercises to stay active." },
+    { name: "Focus Music", icon: <Music />, action: () => playSound("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"), iconColor: "text-indigo-500", bgColor: "bg-indigo-100", description: "Play music to help you focus." },
+    { name: "Study Tips", icon: <BookOpen />, action: () => navigate("/study-tips"), iconColor: "text-orange-500", bgColor: "bg-orange-100", description: "Learn tips to improve your study habits." },
+    { name: "Energy Boost", icon: <Bolt />, action: () => console.log(energyTips[Math.floor(Math.random() * energyTips.length)]), iconColor: "text-pink-500", bgColor: "bg-pink-100", description: "Get a quick energy boost with tips." },
   ];
 
   return (
@@ -71,8 +79,4 @@ export default function StressManagement() {
       </div>
     </div>
   );
-<<<<<<< HEAD
-};
-=======
 }
->>>>>>> 51f57a58d35aa761c25dfce364967b81035b05e4
